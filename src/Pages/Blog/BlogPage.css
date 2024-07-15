@@ -1,0 +1,27 @@
+.blogBanner{
+  width: 100%;
+  background-color: rgb(38, 38, 38);
+  margin-top: 40px;
+
+}
+.headingBanner {
+  width: 84%;
+  margin: auto;
+  
+ 
+}
+
+.headingBanner h1 {
+  padding-top: 4%;
+  padding-bottom: 4%;
+  color: #ffffff;
+}
+.blogImage{
+  width: 100%;
+}
+.blogImage img{
+  width: 100%;
+}
+.secondBlogContent{
+  width: 100px;
+}

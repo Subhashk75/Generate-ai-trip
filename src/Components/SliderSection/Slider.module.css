@@ -1,0 +1,92 @@
+/* Slider.module.css */
+
+.slider {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  margin-top: 85px;
+}
+
+.slider .list {
+  display: flex;
+  transition: transform 1s ease-in-out;
+}
+
+.item {
+  min-width: 100%;
+  box-sizing: border-box;
+}
+
+.slider .list .item img {
+  width: 100%;
+  /* padding-top: .25%; */
+  object-fit: cover;
+}
+
+.slider .buttons {
+  position: absolute;
+  top: 50%;
+  left: 4%;
+  width: 92%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+}
+
+.slider .buttons button {
+  width: 50px;
+  height: 50px;
+  background-color: rgba(113, 113, 113, 0.333);
+  color: #fff;
+  border: none;
+  font-family: monospace;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.slider .buttons button:hover {
+  background-color: rgba(45, 41, 41, 0.333);
+}
+
+.slider .dots {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  color: #fff;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.slider .dots li {
+  list-style: none;
+  width: 10px;
+  height: 10px;
+  background-color: #fff;
+  margin: 10px;
+  border-radius: 20px;
+  transition: 0.5s;
+}
+
+.slider .dots li.active {
+  width: 30px;
+}
+
+/* Responsive Styles */
+@media (max-width: 1150px) {
+  .slider{
+    margin-top: 85px;
+  }
+}
+@media (max-width: 700px) {
+  .slider{
+    margin-top: 85px;
+  }
+}
+@media (max-width: 550px) {
+  .slider{
+    margin-top: 75px;
+  }
+}

@@ -1,0 +1,24 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'serif';
+}
+
+html {
+	/* Smooth Scrolling */
+	scroll-behavior: smooth;
+	--primary-clr:  #d29d2a;
+	--light-grey-bg: #ebebec;
+	--grey-bg: #e3e3e4;
+	--heading-clr: #010101;
+	--text-clr: #676767;
+	--yellow-clr: #fbc980;
+	--purple-clr: #d181da;
+	--green-clr: #c5fdf2;
+}
+body{
+
+	
+}
+

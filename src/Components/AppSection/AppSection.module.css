@@ -1,0 +1,150 @@
+.mobileAppSection {
+  width: 100%;
+  background-color: rgb(255, 237, 214);
+  padding-top: 20px;
+  padding-bottom: 20px;
+  
+}
+
+.appColms {
+  width: 92%;
+  margin-left: 4%;
+  margin-right: 4%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+
+}
+
+.appColmRight {
+  width: 20%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-left: 4%;
+}
+
+.appColmLeft {
+  width: 60%;
+  padding: 20px;
+}
+
+.appCont {
+  text-align: center;
+}
+
+.appColmLeft h2 {
+  font-size: (18px +.6vw);
+  font-weight: 700;
+}
+
+span {
+  color: #0000ff;
+  font-weight: 900;
+}
+
+.appColmLeft p {
+  font-size: (13px + .5vw);
+  color: rgb(92, 0, 0);
+}
+
+.btnOuter {
+  margin-top: 30px;
+ 
+}
+.googlePlay{
+   width: 150px;
+}
+.appleStore{
+ width: 130px;
+ margin-left: 10px;
+ 
+}
+
+
+
+.appSlider {
+  width: 100%;
+  max-width: 100%;
+  margin: auto;
+  position: relative;
+  overflow: hidden;
+  display: flex; /* Ensures the .last container takes up full width */
+}
+
+.appSlider .last {
+  display: flex;
+  transition: transform 1s ease;
+  
+}
+
+.last img {
+  width: 80%;
+  padding: 10%;
+  
+  object-fit: cover;
+  border-radius: 25px;
+  flex: 0 0 100%; /* Ensures each image takes up full width */
+}
+
+
+
+@media (max-width: 1250px) {
+  .appColms {
+    display: block;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .appColmLeft {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+  }
+  .appColmRight {
+    width: 30%;
+    margin-left: 35%;
+   
+   
+  
+    
+  }
+
+}
+
+@media (max-width: 750px) {
+
+
+  .appColmRight {
+    width: 40%;
+    margin-left: 30%;
+  }
+}
+
+@media (max-width: 500px) {
+  .appColmRight {
+    width: 50%;
+    margin-left: 25%;
+   
+  }
+
+}
+@media (max-width: 360px) {
+  .btnOuter {
+    display: block;
+    justify-content: center;
+   
+  }
+  .googlePlay{
+    width: 150px;
+ }
+ .appleStore{
+  width: 130px;
+  margin-top: 10px;
+  
+ }
+
+}
