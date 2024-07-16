@@ -1,0 +1,129 @@
+.blogBanner {
+  width: 100%;
+  background-color: rgb(38, 38, 38);
+  height: 120px;
+  margin-top: 80px;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.headingBanner {
+  width: 84%;
+  margin: auto;
+}
+
+.headingBanner h1 {
+  text-align: center;
+  color: #ffffff;
+}
+
+.resultsPage {
+  width: 92%;
+  margin: auto;
+  font-family: Arial, sans-serif;
+}
+
+.section {
+  margin-bottom: 40px;
+}
+
+.section h2 {
+  font-size: 24px;
+  color: #003366;
+  border-bottom: 2px solid #003366;
+  padding-bottom: 5px;
+  margin-bottom: 20px;
+}
+
+.buttonsContainer {
+  display: flex;
+  gap: 10px;
+}
+
+.categoryButton {
+  padding: 10px 20px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.categoryButton:hover {
+  background-color: #ddd;
+}
+
+.categoryButton.active {
+  background-color: #4caf50;
+  color: white;
+}
+
+.timeline {
+  position: relative;
+  margin: 20px 0;
+  padding: 10px 0;
+  border-left: 3px solid #4caf50;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.resultSection {
+  position: relative;
+  padding: 10px 20px;
+  margin-left: 20px;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  animation: slideIn 1s ease-in-out;
+}
+
+.resultSection:before {
+  content: '';
+  position: absolute;
+  left: -8px;
+  top: 20px;
+  width: 16px;
+  height: 16px;
+  background-color: #4caf50;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.resultSection h3 {
+  font-size: 20px;
+  color: #003366;
+  margin-bottom: 10px;
+}
+
+.resultSection p {
+  font-size: 16px;
+  color: #555;
+  margin: 5px 0;
+}
+
+.viewMoreButton {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.viewMoreButton:hover {
+  background-color: #45a049;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}

@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
 import styles from './AdmissionForm.module.css';
-import UpperNav from '../../Components/NavbarSection/UpperNav';
-import NavBar from '../../Components/NavbarSection/NavBar';
-import FooterSection from '../../Components/Footer/FooterSection';
 import { FaCheckCircle } from 'react-icons/fa';
 import { SiGoogleforms } from "react-icons/si";
 import { AiOutlineForm } from "react-icons/ai";
@@ -46,13 +43,12 @@ const AdmissionForm = () => {
 
     return (
         <>
-            <UpperNav />
-            <NavBar />
-            <div className={styles.blogBanner}>
-                <div className={styles.headingBanner}>
-                    <h1><SiGoogleforms style={{marginRight:"10px", marginBottom:"5px"}} />Online Admission Inquiry</h1>
-                </div>
+           
+           <div className="w-full bg-gray-800 h-40 mt-20 flex items-center justify-center">
+            <div className="w-5/6 mx-auto">
+                <h1 className="text-center text-white text-4xl"><SiGoogleforms className="inline mr-2" />Online Admission Inquiry</h1>
             </div>
+        </div>
             <div className={styles.container}>
                 <div className={styles.imageContainer}>
                     <img
@@ -62,7 +58,7 @@ const AdmissionForm = () => {
                     />
                 </div>
                 <div className={styles.formContainer}>
-                    <h2><AiOutlineForm style={{marginRight:"10px", marginBottom:"5px"}}/>Fill This Form</h2>
+                    <h2 className={styles.formHeading}><AiOutlineForm style={{marginRight:"10px", marginBottom:"5px"}}/>Fill This Form</h2>
                     <form onSubmit={handleSubmit}>
                         <div className={styles.formGroup}>
                             <label htmlFor="name">Name:</label>
@@ -139,7 +135,7 @@ const AdmissionForm = () => {
             </div>
          
 
-            <FooterSection />
+           
         </>
     );
 };

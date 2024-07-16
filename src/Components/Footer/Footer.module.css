@@ -45,7 +45,7 @@
   border-top: 2px solid #ffffff; /* You can also use color: rgb(0, 0, 0); as border-color if necessary */
 }
 
-.footerCol .colTitle h4 {
+.footerCol .colTitle h3 {
   font-size: (15px + .5vw);
   font-weight: 600;
 }
@@ -58,10 +58,13 @@
 .footerCol .colContents ul {
   color: #999999;
 
+
 }
 
 .footerCol .colContents ul li {
   margin-top: 10px;
+  list-style-type:square;
+  margin-left: 15px;
 }
 
 .footerCol .colContents ul li a {
@@ -104,7 +107,6 @@
 
 .socialUl {
   display: flex;
-  margin-top: 10px;
   padding: 10px;
 }
 

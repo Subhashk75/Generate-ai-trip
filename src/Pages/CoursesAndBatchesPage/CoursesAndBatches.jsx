@@ -1,7 +1,5 @@
 import React from 'react';
-import UpperNav from '../../Components/NavbarSection/UpperNav';
-import NavBar from '../../Components/NavbarSection/NavBar';
-import FooterSection from '../../Components/Footer/FooterSection';
+
 import styles from './CoursesAndBatches.module.css';
 import { FaYoutube } from 'react-icons/fa';
 import Slider from '../../Components/SliderSection/Slider';
@@ -21,8 +19,7 @@ const CoursesAndBatches = () => {
 
     return (
         <>
-            <UpperNav />
-            <NavBar />
+          
             <Slider />
             <div className={styles.blogBanner}>
                 <div className={styles.headingBanner}>
@@ -127,7 +124,7 @@ const CoursesAndBatches = () => {
                     <FaYoutube /> More Videos
                 </button>
             </div>
-            <FooterSection />
+       
         </>
     );
 };

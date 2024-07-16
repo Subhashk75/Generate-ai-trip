@@ -1,3 +1,5 @@
+
+
 .blogBanner{
   width: 100%;
   background-color: rgb(38, 38, 38);
@@ -9,6 +11,9 @@
   margin: auto;
   
  
+}
+.container{
+  width: 92%;
 }
 
 .headingBanner h1 {

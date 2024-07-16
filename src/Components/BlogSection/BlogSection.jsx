@@ -109,7 +109,7 @@ const BlogSection = () => {
       </header>
       <div className={styles.teamBox}>
         <div className={styles.wrapper}>
-          <i id="left" className="fa-solid fa-angle-left"></i>
+          <i id="left" className="fa-solid fa-angle-left" style={{visibility:"hidden"}}></i>
           <ul className={styles.carousel}>
             <li className={styles.card}>
               <div className={styles.blogImg}>
@@ -127,7 +127,7 @@ const BlogSection = () => {
             </li>
             {/* Add more cards as needed */}
           </ul>
-          <i id="right" className="fa-solid fa-angle-right"></i>
+          <i id="right" className="fa-solid fa-angle-right" style={{visibility:"hidden"}}></i>
         </div>
       </div>
     </section>

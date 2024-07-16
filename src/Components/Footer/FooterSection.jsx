@@ -15,7 +15,7 @@ class FooterSection extends Component {
         <div className={styles.footerContents}>
           <div className={`${styles.footerCol} ${styles.footerCol1}`}>
             <div className={styles.colTitle}>
-              <h4>About Us</h4>
+              <h3>About Us</h3>
               
             </div>
             <hr className={styles.hrLine} />
@@ -74,13 +74,13 @@ class FooterSection extends Component {
           <div className={styles.footerLogo}>
             <div className={styles.socialMediaAccounts}>
               <ul className={styles.socialUl}>
-                <li><a href="https://t.me/infiniteacademysikar" target="main" className={styles.telegram}><FaTelegram className="fab fa-telegram" style={{color:"#1DA1F2",marginLeft:"5px"}} />
+                <li><a href="https://t.me/infiniteacademysikar" target="main" className={styles.telegram}><FaTelegram className="fab fa-telegram" style={{color:"#1DA1F2",marginLeft:"5px",marginTop:"5px"}} />
                </a></li>
-                <li><a href="https://www.facebook.com/InfiniteAcademySikar" target="main" className={styles.facebook}><FaFacebook className="fab fa-facebook" style={{color:"#2867B2",marginLeft:"5px"}}/></a></li>
-                <li><a href="https://instagram.com/infiniteeduversesikar" target="main" className={styles.instagram}><RiInstagramFill className="fab fa-instagram" style={{color:"#E1306C",marginLeft:"5px"}} /></a></li>
-                <li><a href="https://twitter.com/infiniteeduversesikar" target="main" className={styles.twitter}><FaSquareXTwitter className="fab fa-twitter" style={{color:"#2867B2",marginLeft:"5px"}} />
+                <li><a href="https://www.facebook.com/InfiniteAcademySikar" target="main" className={styles.facebook}><FaFacebook className="fab fa-facebook" style={{color:"#2867B2",marginLeft:"5px",marginTop:"5px"}}/></a></li>
+                <li><a href="https://instagram.com/infiniteeduversesikar" target="main" className={styles.instagram}><RiInstagramFill className="fab fa-instagram" style={{color:"#E1306C",marginLeft:"5px",marginTop:"5px"}} /></a></li>
+                <li><a href="https://twitter.com/infiniteeduversesikar" target="main" className={styles.twitter}><FaSquareXTwitter className="fab fa-twitter" style={{color:"#2867B2",marginLeft:"5px",marginTop:"5px"}} />
                 </a></li>
-                <li><a href="https://www.youtube.com/@InfiniteEduVerse" target="main" className={styles.youtube}><FaYoutube className="fab fa-youtube" style={{color:"#ff0000",marginLeft:"5px"}} />
+                <li><a href="https://www.youtube.com/@InfiniteEduVerse" target="main" className={styles.youtube}><FaYoutube className="fab fa-youtube" style={{color:"#ff0000",marginLeft:"5px",marginTop:"5px"}} />
                 </a></li>
               </ul>
             </div>

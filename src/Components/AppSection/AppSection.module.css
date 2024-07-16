@@ -40,7 +40,7 @@
 }
 
 span {
-  color: #0000ff;
+  color: #0b1c39;
   font-weight: 900;
 }
 
@@ -51,15 +51,53 @@ span {
 
 .btnOuter {
   margin-top: 30px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
  
 }
 .googlePlay{
-   width: 150px;
+   width: 140px;
+   height: 50px;
+   border-radius: 10px;
+   color: aliceblue;
+   background-color: black;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap: 5px;
+   cursor: pointer;
+}
+
+.googlePlay:hover{
+  background-color: rgb(33, 33, 33);
+}
+
+
+.googlePlayIcon{
+  height: 30px;
+  width: 30px;
 }
 .appleStore{
- width: 130px;
- margin-left: 10px;
- 
+
+  width: 140px;
+   height: 50px;
+   border-radius: 10px;
+   color: aliceblue;
+   background-color: black;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap: 5px;
+   cursor: pointer;
+}
+.appleStore:hover{
+  background-color: rgb(33, 33, 33);
+}
+.appleIcon{
+  height: 35px;
+  width: 35px;
 }
 
 
@@ -134,17 +172,12 @@ span {
 }
 @media (max-width: 360px) {
   .btnOuter {
-    display: block;
-    justify-content: center;
+    display: inline-block;
+    
    
   }
-  .googlePlay{
-    width: 150px;
- }
- .appleStore{
-  width: 130px;
-  margin-top: 10px;
-  
- }
+  .appleStore{
+    margin-top: 10px;
+  }
 
 }

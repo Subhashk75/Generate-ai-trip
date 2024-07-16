@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Course.module.css";
+import { Link, NavLink } from "react-router-dom";
 
 
 const coursesData = [
@@ -7,21 +8,21 @@ const coursesData = [
         id: 1,
         title: "JEE (Main+Advanced)",
         description: "JEE (Main+Advanced) Courses builds strong subject knowledge and problem-solving skills to help aspirants ace the exams to get enrolled into IITs.",
-        link: "https://www.google.com/maps",
+        link: "/course&batch",
         image: "https://www.allen.ac.in/assets/img/new-homepage/jee-main.png"
     },
     {
         id: 2,
         title: "Pre-Medical/NEET UG",
         description: "NEET-UG Courses sharpen skills essential for medical entrance exams, ensuring students are well-prepared for success in the competitive medical field.",
-        link: "#",
+        link: "/course&batch",
         image: "https://www.allen.ac.in/assets/img/new-homepage/premedical.png"
     },
     {
         id: 3,
         title: "NEET UG",
         description: "NEET-UG Courses sharpen skills essential for medical entrance exams, ensuring students are well-prepared for success in the competitive medical field.",
-        link: "#",
+        link: "/course&batch",
         image: "https://www.allen.ac.in/assets/img/new-homepage/medpg.png"
         
     },
@@ -29,7 +30,7 @@ const coursesData = [
         id: 4,
         title: "JEE (Main)",
         description: "JEE (Main) courses are designed to provide students with a significant competitive edge for achieving success for their path to NITs, IIITs and equivalent colleges.",
-        link: "#",
+        link: "/course&batch",
         image: "https://www.allen.ac.in/assets/img/new-homepage/jeemain.png"
         
     }
@@ -51,9 +52,9 @@ const CourseAndFees = () => {
                         <div className={styles.courseDesc}>
                             <h2>{course.title}</h2>
                             <p>{course.description}</p>
-                            <a href={course.link}>
+                            <NavLink to={course.link}>
                                 <button className={styles.courseBtn}>Click Here</button>
-                            </a>
+                            </NavLink>
                         </div>
                     </div>
                 ))}

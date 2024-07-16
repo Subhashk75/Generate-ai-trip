@@ -37,11 +37,11 @@ const GalleryHome = () => {
         <UpperNav />
         <NavBar />
         
-        <div className='py-4'></div>
         
-        <div className={styles.blogBanner}>
-            <div className={styles.headingBanner}>
-                <h1><GrGallery className={styles.bannerIcon} />Gallery</h1>
+        
+        <div className="w-full bg-gray-800 h-40 mt-20 flex items-center justify-center">
+            <div className="w-5/6 mx-auto">
+                <h1 className="text-center text-white text-4xl"><GrGallery className="inline mr-2" />Gallery</h1>
             </div>
         </div>
 

@@ -71,6 +71,8 @@
 .courseBatch:hover {
   transform: translateY(-10px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #ff8000;
+  color: #f1f1f1;
 }
 
 .courseBatch h3 {

@@ -1,0 +1,101 @@
+.blogBanner {
+  width: 100%;
+  background-color: rgb(38, 38, 38);
+  height: 120px;
+  margin-top: 80px;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.headingBanner {
+  width: 84%;
+  margin: auto;
+}
+
+.headingBanner h1 {
+  text-align: center;
+  color: #ffffff;
+}
+
+.bannerIcon {
+  margin-right: 10px;
+}
+
+.scholarshipSection {
+  width: 92%;
+  margin: auto;
+  font-family: Arial, sans-serif;
+}
+
+.section {
+  margin-bottom: 40px;
+}
+
+.tableContainer {
+  text-align: center;
+}
+
+.tableContainer h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.tableContainer p {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.table th,
+.table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.table th {
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+.table td {
+  color: #555;
+}
+
+.additionalInfo {
+  font-size: 18px;
+  color: #ff6600;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.additionalInfo p {
+  margin: 10px 0;
+}
+
+.highlight {
+  font-size: 24px;
+  color: #ff0000;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 600px) {
+  .table {
+    width: 100%;
+    overflow-x: auto;
+  }
+  
+  .table th,
+  .table td {
+    white-space: nowrap;
+  }
+}

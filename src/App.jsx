@@ -17,11 +17,16 @@ import GalleryHome from './Pages/Gallery/GalleyHome';
 import PhotoGallery from './Pages/Gallery/PhotoGallery';
 import AdmissionForm from './Pages/Admission/AdmissionForm';
 import CoursesAndBatches from './Pages/CoursesAndBatchesPage/CoursesAndBatches';
+import FeeRefundRules from './Pages/FeeAndScholarship/FeeRefundRules';
+import FeeStructure from './Pages/FeeAndScholarship/FeeStructure';
+import Scholarship from './Pages/FeeAndScholarship/Scholarship';
+import ResultsHomePage from './Pages/Results/ResultsHomePege';
+import ResultMainPage from './Pages/Results/ResultMainPage';
 
 function App() {
     return (
         <div className="App">
-         <div className="homePage">
+         
             <UpperNav />
             <NavBar /> 
             <Slider/>
@@ -34,12 +39,17 @@ function App() {
             <LocationSection />
             <AppSection />
             <FooterSection />
-            </div>
+          
              {/* <GalleryHome /> */}
             {/* <PhotoGallery /> */}
              {/* <BlogPage /> */}
              {/* <AdmissionForm /> */}
              {/* <CoursesAndBatches /> */}
+             {/* <FeeRefundRules/> */}
+             {/* <FeeStructure /> */}
+             {/* <Scholarship /> */}
+             {/* <ResultsHomePage /> */}
+             {/* <ResultMainPage /> */}
             {/* Other sections go here */}
         </div>
     );

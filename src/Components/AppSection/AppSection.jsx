@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./AppSection.module.css";
-import googlePlayIcon from "../../assets/photoes/google-play-icon.png";
+
+import { FaGooglePlay, FaApple } from "react-icons/fa";
+
 import appleStoreIcon from "../../assets/photoes/apple store.png";
 import sliderImg1 from "../../assets/photoes/slider-img1.png";
 import sliderImg2 from "../../assets/photoes/slider-img2.png";
@@ -58,7 +60,7 @@ const AppSection = () => {
       <div className={styles.appColms}>
         <div className={styles.appColmLeft}>
           <div className={styles.appCont}>
-            <h2>
+            <h2 >
               Admission Information through <span>Infinite EduVerse</span> App
             </h2>
             <p>
@@ -66,33 +68,12 @@ const AppSection = () => {
               the admission info and solve related queries.
             </p>
             <div className={styles.btnOuter}>
-              <a
-                href="https://play.google.com/store/apps/details?id=in.allen.alleninfo&amp;hl=en"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() =>
-                  gtag("event", "Click", {
-                    event_category: "APPS",
-                    event_label: "Google Play",
-                  })
-                }
-              >
-                <img src={googlePlayIcon} alt="Google Play Store"  className={styles.googlePlay} />
-              </a>
-              <a
-                
-                href="https://www.apple.com/app-store/"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() =>
-                  gtag("event", "Click", {
-                    event_category: "APPS",
-                    event_label: "Apple Store",
-                  })
-                }
-              >
-                <img src={appleStoreIcon} alt="Apple App Store" className={styles.appleStore}  />
-              </a>
+              <div className={styles.googlePlay}>
+               <FaGooglePlay className={styles.googlePlayIcon} /><div className={styles.iconText} ><p style={{fontSize:"10px",color:"#c1c1c1"}}>Download on the</p>Google Play</div>
+              </div>
+              <div className={styles.appleStore}>
+               <FaApple className={styles.appleIcon} /><div className={styles.iconText}><p style={{fontSize:"10px",color:"#c1c1c1"}}>Download on the</p>App Store</div>
+              </div>
             </div>
           </div>
         </div>

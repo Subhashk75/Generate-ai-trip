@@ -1,13 +1,11 @@
 import React from 'react';
-import UpperNav from '../../Components/NavbarSection/UpperNav';
-import NavBar from '../../Components/NavbarSection/NavBar';
-import FooterSection from '../../Components/Footer/FooterSection';
+
+
 
 import './BlogPage.css'
 const BlogPage = () => {
   return (<>
-  <UpperNav></UpperNav>
-  <NavBar></NavBar><div className='py-4'></div>
+  <div className='py-4'></div>
   <div className="blogBanner">
         <div className="headingBanner">
           <h1 >Shiksha Sambal Entrance Exam for Free Coaching at ALLEN Kota Concluded</h1>
@@ -28,7 +26,7 @@ const BlogPage = () => {
             <h2 className="display-5 link-body-emphasis mb-1">Sample blog post</h2>
             <p className="blog-post-meta">July 20, 2024 by <a href="#">Ali Naushad</a></p>
             <p>This blog post shows a few different types of content that’s supported and styled with Bootstrap. Basic typography, lists, tables, images, code, and more are all supported as expected.</p>
-            <hr />
+            <hr  className='mb-4'/>
             <div className="blogImage">
               <img src="https://myexam.allen.in/wp-content/uploads/2024/07/B.Tech-Program-in-Hindi-at-IIT-Jodhpur-From-New-Academic-Session.jpg" alt="" />
             </div>
@@ -137,7 +135,7 @@ const BlogPage = () => {
       </div>
 
     </main>
-    <FooterSection></FooterSection></>
+</>
   );
 }
 

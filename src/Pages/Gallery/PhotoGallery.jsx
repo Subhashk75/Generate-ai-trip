@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import styles from './PhotoGallery.module.css';
-import UpperNav from '../../Components/NavbarSection/UpperNav';
-import NavBar from '../../Components/NavbarSection/NavBar';
-import FooterSection from '../../Components/Footer/FooterSection';
+
 import { FaHeart, FaDownload } from 'react-icons/fa';
 import { GrGallery } from "react-icons/gr";
 
 const photos = [
   { src: 'https://princeschoolsikar.com/assets/result/12-2022.jpg', alt: 'A boy surrounded by beautiful nature' },
   { src: 'https://jpsschooljaisinghpura.github.io/.ac.in/back_to_school_facebook_cover_34.jpg', alt: 'What a beautiful scenery this sunset' },
-  { src: 'https://www.w3schools.com/w3images/girl.jpg', alt: 'The Beach. Me. Alone. Beautiful' },
+  { src: 'https://ravi22110219.github.io/BidsukTechnoCreation/Ravi%20Kumawat.jpg', alt: 'The Beach. Me. Alone. Beautiful' },
   { src: 'https://www.w3schools.com/w3images/girl_mountain.jpg', alt: 'Quiet day at the beach. Cold, but beautiful' },
   { src: 'https://www.w3schools.com/w3images/man_bench.jpg', alt: 'Waiting for the bus in the desert' },
   { src: 'https://www.w3schools.com/w3images/girl_train.jpg', alt: 'Nature again.. At its finest!' },
@@ -109,13 +107,12 @@ const PhotoGallery = () => {
 
     return (
         <>
-            <UpperNav />
-            <NavBar />
-            <div className={styles.blogBanner}>
-                <div className={styles.headingBanner}>
-                    <h1><GrGallery className={styles.bannerIcon} />Gallery</h1>
-                </div>
+          
+          <div className="w-full bg-gray-800 h-40 mt-20 flex items-center justify-center">
+            <div className="w-5/6 mx-auto">
+                <h1 className="text-center text-white text-4xl"><GrGallery className="inline mr-2" />Gallery</h1>
             </div>
+        </div>
             <div className={`py-4 ${styles.lightGreyBackground} ${styles.contentContainer}`}>
                 <div className={styles.gridButtons}>
                     <label htmlFor="gridSizeRange" className="form-label">Grid Size: {gridSize}</label>
@@ -207,7 +204,7 @@ const PhotoGallery = () => {
                 </div>
             )}
 
-            <FooterSection />
+           
         </>
     );
 };

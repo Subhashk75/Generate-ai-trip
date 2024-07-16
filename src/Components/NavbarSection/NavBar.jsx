@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import styles from "./NavBar.module.css";
 import logo from "../../assets/photoes/logo.png";
 import { AiOutlineMenuFold, AiOutlineMenuUnfold } from "react-icons/ai";
+import { Link, NavLink } from "react-router-dom";
 
 const NavBar = () => {
     const [menuActive, setMenuActive] = useState(false);
     const [homeActive, setHomeActive] = useState(false);
     const [showFeeDropdown, setShowFeeDropdown] = useState(false);
-    const [showResultsDropdown, setShowResultsDropdown] = useState(false);
+    const [showCourseAndBatchDropdown, setShowCourseAndBatchDropdown] = useState(false);
 
     const handleMenuToggle = () => {
         setMenuActive(!menuActive);
@@ -43,43 +44,58 @@ const NavBar = () => {
                     </div>
                 </div>
                 <ul className={`${styles.navList} ${menuActive ? styles.active : ""}`}>
-                    <li><a href="#" onClick={handleMenuItemClick}>Courses & Batch</a></li>
-                    <li><a href="#" onClick={handleMenuItemClick}>Admission</a></li>
+                    <li
+                        onMouseEnter={() => setShowCourseAndBatchDropdown(true)}
+                        onMouseLeave={() => setShowCourseAndBatchDropdown(false)}
+
+                    ><NavLink to={"/course&batch"} className={({isActive})=> `block py-2 pr-4 pl-3 duration-200 ${isActive ? "text-orange-600" : "text-gray-950"} border-b font-medium text-lg border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-600 lg:p-0`}>Courses & Batch</NavLink>
+                    {showCourseAndBatchDropdown && (
+                            <div className={styles.dropdown}>
+                                <NavLink to={"/course&batch"} className={({isActive})=> `block py-2 p-1 pr-4 pl-3 duration-200 ${isActive ? "text-gray-950" : "text-gray-950"} border-b text-gray-950 font-medium text-lg border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-600 lg:p-0`}>JEE Advanced</NavLink>
+                                <NavLink to={"/course&batch"} className={({isActive})=> `block py-2 p-1 pr-4 pl-3 duration-200 ${isActive ? "text-gray-950" : "text-gray-950"} border-b font-medium text-lg border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-600 lg:p-0`}>JEE Main</NavLink>
+                                <NavLink to={"/course&batch"} className={({isActive})=> `block py-2 p-1 pr-4 pl-3 duration-200 ${isActive ? "text-gray-950" : "text-gray-950"} border-b font-medium text-lg border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-600 lg:p-0`}>NEET UG</NavLink>
+                            </div>
+                        )}
+                    </li>
+
+
+                    <li><NavLink to={"/admission"} className={({isActive})=> `block py-2 pr-4 pl-3 duration-200 ${isActive ? "text-orange-600" : "text-gray-950"} border-b font-medium text-lg border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-600 lg:p-0`}>Admission</NavLink></li>
                     <li 
                         onMouseEnter={() => setShowFeeDropdown(true)}
                         onMouseLeave={() => setShowFeeDropdown(false)}
                     >
-                        <a href="#">Fee & Scholarship</a>
+                        <NavLink to={"/feeandscholarship"} className={({isActive})=> `block py-2 pr-4 pl-3 duration-200 ${isActive ? "text-orange-600" : "text-gray-950"} border-b font-medium text-lg border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-600 lg:p-0`}>Fee & Scholarship</NavLink>
                         {showFeeDropdown && (
                             <div className={styles.dropdown}>
-                                <a href="#" onClick={handleMenuItemClick}>Fee Structure</a>
-                                <a href="#" onClick={handleMenuItemClick}>Scholarship</a>
-                                <a href="#" onClick={handleMenuItemClick}>Refund Rules</a>
+                                <NavLink to={"/feeandscholarship"} className={({isActive})=> `block py-2 p-1 pr-4 pl-3 duration-200 ${isActive ? "text-gray-950" : "text-gray-950"} border-b text-gray-950 font-medium text-lg border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-600 lg:p-0`}>Fee Structure</NavLink>
+                                <NavLink to={"/feeandscholarship"} className={({isActive})=> `block py-2 p-1 pr-4 pl-3 duration-200 ${isActive ? "text-gray-950" : "text-gray-950"} border-b text-gray-950 font-medium text-lg border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-600 lg:p-0`}>Scholarship</NavLink>
+                                <NavLink to={"/feeandscholarship"} className={({isActive})=> `block py-2 p-1 pr-4 pl-3 duration-200 ${isActive ? "text-gray-950" : "text-gray-950"} border-b text-gray-950 font-medium text-lg border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-600 lg:p-0`}>Refund Rules</NavLink>
                             </div>
                         )}
                     </li>
-                    <li><a href="#" onClick={handleMenuItemClick}>Gallery</a></li>
+                    <li><NavLink to={"/gallery"} className={({isActive})=> `block py-2 pr-4 pl-3 duration-200 ${isActive ? "text-orange-600" : "text-gray-950"} border-b font-medium text-lg border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-600 lg:p-0`}>Gallery</NavLink></li>
                     <li 
-                        onMouseEnter={() => setShowResultsDropdown(true)}
-                        onMouseLeave={() => setShowResultsDropdown(false)}
+                        // onMouseEnter={() => setShowResultsDropdown(true)}
+                        // onMouseLeave={() => setShowResultsDropdown(false)}
                     >
-                        <a href="#">Results</a>
-                        {showResultsDropdown && (
+                        <NavLink to={"/result"} className={({isActive})=> `block py-2 pr-4 pl-3 duration-200 ${isActive ? "text-orange-600" : "text-gray-950"} border-b font-medium text-lg border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-600 lg:p-0`}>Results</NavLink>
+                        {/* {showResultsDropdown && (
                             <div className={styles.dropdown}>
-                                <a href="#" onClick={handleMenuItemClick}>JEE Main</a>
-                                <a href="#" onClick={handleMenuItemClick}>JEE Advanced</a>
-                                <a href="#" onClick={handleMenuItemClick}>NEET UG</a>
+                                <NavLink to={"/result"} className={({isActive})=> `block py-2 p-1 pr-4 pl-3 duration-200 ${isActive ? "text-gray-950" : "text-gray-950"} border-b text-gray-950 font-medium text-lg border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-600 lg:p-0`}>JEE Advanced</NavLink>
+                                <NavLink to={"/result"} className={({isActive})=> `block py-2 p-1 pr-4 pl-3 duration-200 ${isActive ? "text-gray-950" : "text-gray-950"} border-b font-medium text-lg border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-600 lg:p-0`}>JEE Main</NavLink>
+                                <NavLink to={"/result"} className={({isActive})=> `block py-2 p-1 pr-4 pl-3 duration-200 ${isActive ? "text-gray-950" : "text-gray-950"} border-b font-medium text-lg border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-600 lg:p-0`}>NEET UG</NavLink>
                             </div>
-                        )}
+                        )} */}
                     </li>
-                    <li><a href="#" onClick={handleMenuItemClick}>Facilities</a></li>
-                    <li><a href="#" onClick={handleMenuItemClick}>Contact Us</a></li>
+                    <li><NavLink to={"/blog"} className={({isActive})=> `block py-2 pr-4 pl-3 duration-200 ${isActive ? "text-orange-600" : "text-gray-950"} border-b font-medium text-lg border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-600 lg:p-0`}>Blogs</NavLink></li>
+
+                    <li><NavLink to={"/adminpage"} className={({isActive})=> `block py-2 pr-4 pl-3 duration-200 ${isActive ? "text-orange-600" : "text-gray-950"} border-b font-medium text-lg border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 hover:text-orange-600 lg:p-0`}>Blog Admin</NavLink></li>
                 </ul>
                 <div className={styles.menuBtn} onClick={handleMenuToggle}>
                     {menuActive ? (
-                        <AiOutlineMenuUnfold style={{ height: "50px", width: "100px", marginTop: "15px" }} />
+                        <AiOutlineMenuUnfold style={{ height: "50px", width: "100px"}} />
                     ) : (
-                        <AiOutlineMenuFold style={{ height: "50px", width: "100px", marginTop: "15px" }} />
+                        <AiOutlineMenuFold style={{ height: "50px", width: "100px"}} />
                     )}
                 </div>
             </nav>
