@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import styles from './Slider.module.css';
 
 // Import your images
-import image1 from '../../assets/photoes/image-1.jpg';
-import image2 from '../../assets/photoes/image-2.jpg';
+import image1 from '../../assets/photoes/Nitp001.jpg';
+import image2 from '../../assets/photoes/Nitp003.jpg';
 
 const images = [image1, image2, image1, image2, image1];
 
@@ -52,14 +52,6 @@ const Slider = () => {
                     &gt;
                 </button>
             </div>
-            {/* <ul className={styles.dots}>
-                {images.map((_, index) => (
-                    <li
-                        key={index}
-                        className={`${styles.dot} ${index === currentIndex ? styles.active : ''}`}
-                    ></li>
-                ))}
-            </ul> */}
         </div>
     );
 };

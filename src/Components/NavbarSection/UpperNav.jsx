@@ -36,14 +36,20 @@ const UpperNav = () => {
                     </ul>
                 </div>
                 <div className="w-1/2 flex justify-end mr-4">
+                <a href='/admission'>
                     <button className="w-20 h-6 bg-red-600 text-white border border-gray-600 rounded-full cursor-pointer mr-2.5 hover:bg-red-500 flex items-center justify-center">
                         <MdComputer className="mr-1.25 mr-1" />
-                        Apply
+                        Sign Up
                     </button>
+
+                    </a>
+
+                    <a href='/Login' >
                     <button className="w-20 h-6 bg-blue-600 text-white rounded-full cursor-pointer border border-gray-600 hover:bg-blue-400 flex items-center justify-center">
                         <BiLogIn className="mr-1.25 mr-1" />
                         Log In
                     </button>
+                    </a>
                 </div>
             </div>
         </section>

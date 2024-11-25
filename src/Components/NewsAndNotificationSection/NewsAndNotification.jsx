@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./NewsAndNotification.module.css";
-
+// Import your images
+import image1 from '../../assets/photoes/Nitp003.jpg';
+import image2 from '../../assets/photoes/nitp004.jpg';
 const NewsAndNotification = () => {
   const sliderListRef = useRef(null);
   const sliderItemsRef = useRef([]);
@@ -43,19 +45,19 @@ const NewsAndNotification = () => {
           <div className={styles.mainSlider}>
             <div className={styles.mainSliderList} ref={sliderListRef}>
               <div className={styles.mainSliderItem} ref={(el) => sliderItemsRef.current[0] = el}>
-                <img src="https://allenwebsite-general.s3.ap-south-1.amazonaws.com/slider/images/book-store-jee-main-topic-wise-papers.jpg" alt="SliderImage" style={{ objectFit: "cover" }} />
+                <img src={image1} alt="SliderImage" style={{ objectFit: "cover" }} />
               </div>
               <div className={styles.mainSliderItem} ref={(el) => sliderItemsRef.current[1] = el}>
-                <img src="https://allenwebsite-general.s3.ap-south-1.amazonaws.com/slider/images/summer-workshop-vedic-maths-kota.png" alt="SliderImage" />
+                <img src={image2} alt="SliderImage" />
               </div>
               <div className={styles.mainSliderItem} ref={(el) => sliderItemsRef.current[2] = el}>
-                <img src="https://allenwebsite-general.s3.ap-south-1.amazonaws.com/slider/images/allen-app-to-preparation-for-neet-jee.jpg" alt="SliderImage" />
+                <img src={image1} alt="SliderImage" />
               </div>
               <div className={styles.mainSliderItem} ref={(el) => sliderItemsRef.current[3] = el}>
-                <img src="https://allenwebsite-general.s3.ap-south-1.amazonaws.com/slider/images/book-store-jee-main-topic-wise-papers.jpg"  alt="SliderImage" />
+                <img src={image2}  alt="SliderImage" />
               </div>
               <div className={styles.mainSliderItem} ref={(el) => sliderItemsRef.current[4] = el}>
-                <img src="https://allenwebsite-general.s3.ap-south-1.amazonaws.com/slider/images/summer-workshop-vedic-maths-kota.png"  alt="SliderImage" />
+                <img src={image1}  alt="SliderImage" />
               </div>
             </div>
             <div className={styles.mainSliderButtons}>

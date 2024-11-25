@@ -1,0 +1,54 @@
+.coursePage {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .buttonGroup {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .tableContainer {
+    overflow-x: auto;
+    margin-top: 20px;
+  }
+  
+  .courseTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+  }
+  
+  .courseTable th, .courseTable td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  .courseTable th {
+    background-color: #6c757d;
+    color: #ffffff;
+    font-weight: bold;
+  }
+  
+  .courseTable tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .courseTable a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .courseTable a:hover {
+    text-decoration: underline;
+  }
+  
+  @media (max-width: 768px) {
+    .courseTable th, .courseTable td {
+      font-size: 14px;
+      padding: 10px;
+    }
+  }
+  

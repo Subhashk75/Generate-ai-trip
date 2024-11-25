@@ -1,35 +1,33 @@
 import React from 'react';
-import styles from './AboutSection.module.css'; 
+import styles from './AboutSection.module.css';
 
 const AboutSection = () => {
   return (
     <section className={styles.about} id="about">
       {/* === Left Side Starts === */}
-      <div className={styles.aboutImg}>
-        <iframe className={styles.youtubeShort} src="https://www.youtube-nocookie.com/embed/l9sMIx9mYvc?si=pvSoy3CzaBg4Oc5t&amp;controls=0" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
-      </div>
-      {/* === Left Side Ends === */}
-      {/* === Right Side Starts === */}
-      <div className={styles.aboutText}>
-        {/* === Section Header Starts === */}
+      <div className={styles.aboutTextOnly}>
         <header className={styles.sectionHeader}>
           <h3>About Us</h3>
-          <h1>The best course in animation</h1>
+          <h1>Welcome to the CSE Office</h1>
         </header>
-        {/* === Section Header Ends === */}
+        <div style={{width:"90vw", objectFit:"cover" }}>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-          et dolore magna aliqua. Ut enim ad minim veniam.
+          The CSE Office is the administrative backbone of the Computer Science and Engineering Department. Our mission is to provide seamless operational support to faculty, staff, and students, enabling them to focus on achieving academic excellence and research innovation.
+        </p>
+        <p>
+          Our office is dedicated to streamlining department operations, managing resources effectively, and ensuring a conducive environment for academic and professional growth. With a commitment to transparency and efficiency, we strive to uphold the highest standards in department management.
         </p>
         <ul className={styles.aboutList}>
-          <li check="&#10004;">Lorem ipsum dolor sit amet</li>
-          <li check="&#10004;">consectetur adipisicing elit</li>
-          <li check="&#10004;">sed do eiusmod tempor incididunt</li>
-          <li check="&#10004;">ut labore et dolore magna aliqua</li>
+          <li check="&#10004;">Efficient management of academic records</li>
+          <li check="&#10004;">Support for faculty and staff development</li>
+          <li check="&#10004;">Coordination of research and development projects</li>
+          <li check="&#10004;">Organization of department events and outreach programs</li>
         </ul>
-        <button className={`${styles.btn} ${styles.aboutBtn}`}>Read More</button>
+        </div>
+      
+        <button className={`${styles.btn} ${styles.aboutBtn}`}>Learn More</button>
       </div>
-      {/* === Right Side Ends === */}
+      {/* === Left Side Ends === */}
     </section>
   );
 };

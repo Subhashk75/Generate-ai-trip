@@ -3,16 +3,16 @@ import styles from './AdmissionForm.module.css';
 import { FaCheckCircle } from 'react-icons/fa';
 import { SiGoogleforms } from "react-icons/si";
 import { AiOutlineForm } from "react-icons/ai";
-
+import axios from "axios"
 
 
 const AdmissionForm = () => {
     const [formData, setFormData] = useState({
+        rollNumber:'',
         name: '',
         email: '',
         phone: '',
         course: '',
-        message: ''
     });
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -24,23 +24,34 @@ const AdmissionForm = () => {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Form submitted:', formData);
         setIsModalOpen(true);
-        setFormData({
-            name: '',
-            email: '',
-            phone: '',
-            course: '',
-            message: ''
-        });
+
+        console.log('Form submitted:', formData);
+        
+        await axios.post("http://localhost:4001/api/addmission" ,formData)
+.then((result)=>{
+         console.log("succefully send email");
+    }). catch((error)=>{
+    console.log("erroe os courese" , error.message);
+  })
+   
+     
     };
 
     const handleCloseModal = () => {
         setIsModalOpen(false);
+        setFormData({
+            rollNumber:'',
+            name: '',
+            email: '',
+            phone: '',
+            course: '',
+        });
     };
-
+   
+    
     return (
         <>
            
@@ -59,7 +70,16 @@ const AdmissionForm = () => {
                 </div>
                 <div className={styles.formContainer}>
                     <h2 className={styles.formHeading}><AiOutlineForm style={{marginRight:"10px", marginBottom:"5px"}}/>Fill This Form</h2>
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit} method='POST'>
+                    <div className={styles.formGroup}>
+                            <label htmlFor="message">Roll Number:</label>
+                             <input type="Number" 
+                               id="rollNumber"
+                               name="rollNumber"
+                               value={formData.rollNumber}
+                               onChange={handleChange}
+                             />
+                        </div>
                         <div className={styles.formGroup}>
                             <label htmlFor="name">Name:</label>
                             <input
@@ -94,7 +114,7 @@ const AdmissionForm = () => {
                             />
                         </div>
                         <div className={styles.formGroup}>
-                            <label htmlFor="course">Inquiry For:</label>
+                            <label htmlFor="course"> Select Course:</label>
                             <select
                                 id="course"
                                 name="course"
@@ -103,22 +123,13 @@ const AdmissionForm = () => {
                                 required
                             >
                                 <option value="">Select a course</option>
-                                <option value="JEE Main">JEE Main</option>
-                                <option value="JEE Advance">JEE Advance</option>
-                                <option value="NEET/PMT">NEET/PMT</option>
-                                <option value="Counselling">Counselling</option>
+                                <option value="UG">Under Gruate</option>
+                                <option value="PG">post Graguate</option>
+                                <option value="Professor">Professer</option>
                             </select>
                         </div>
-                        <div className={styles.formGroup}>
-                            <label htmlFor="message">Message:</label>
-                            <textarea
-                                id="message"
-                                name="message"
-                                value={formData.message}
-                                onChange={handleChange}
-                            />
-                        </div>
-                        <button type="submit" className={styles.submitButton}>Submit</button>
+                   
+                        <button type="submit"  className={styles.submitButton}>Sign Up</button>
                     </form>
                 </div>
 
