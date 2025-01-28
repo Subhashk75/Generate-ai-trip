@@ -1,14 +1,12 @@
 import React from 'react'
-import UpperNav from './Components/NavbarSection/UpperNav'
-import NavBar from './Components/NavbarSection/NavBar'
-import FooterSection from './Components/Footer/FooterSection'
+import HeaderSection from "./Components/Header/HeaderSection"
+import FooterSection from "./Components/FooterSection/FooterSection"
 import { Outlet } from 'react-router-dom'
 
 function Layout() {
   return (
     <>
-    <UpperNav />
-    <NavBar />
+    <HeaderSection />
     <Outlet />
     <FooterSection />
     </>
