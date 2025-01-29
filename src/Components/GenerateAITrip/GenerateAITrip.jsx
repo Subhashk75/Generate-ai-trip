@@ -55,6 +55,7 @@ const GenerateAITrip = () => {
      
     if(formData?.email != isLoggedIn?.email){
        alert("plase Enter Login Email ");
+       setLoading(false);
        return ;
     }
   
