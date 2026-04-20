@@ -1,19 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Button, Popover, MenuItem, ListItemIcon, Typography } from "@mui/material";
-import { Logout, AccountCircle } from "@mui/icons-material";
-import { useNavigate } from "react-router-dom";
-import profile from "../../assets/profile.jpeg";
-import logo from "../../assets/logo.svg";
+import { Popover, MenuItem, ListItemIcon, Typography } from "@mui/material";
+import { Logout, AccountCircle, History } from "@mui/icons-material";
+import { useNavigate, Link } from "react-router-dom";
+import { HiOutlineUserCircle, HiOutlineSparkles } from "react-icons/hi2";
 
 const HeaderSection = () => {
-  const user = JSON.parse(localStorage.getItem("formData"));
-  const lastTripId = JSON.parse(localStorage.getItem("lastTripId"));
+  const userString = localStorage.getItem("formData");
+  const user = userString ? JSON.parse(userString) : null;
+  const lastTripId = localStorage.getItem("lastTripId");
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState(null);
-
-  useEffect(() => {
-    console.log("User login header: ", user);
-  }, [user]);
 
   const handleProfileClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -23,11 +19,6 @@ const HeaderSection = () => {
     setAnchorEl(null);
   };
 
-  const handleViewProfile = () => {
-    navigate("/profile");
-    handleClose();
-  };
-
   const handleLogout = () => {
     localStorage.removeItem("formData");
     localStorage.removeItem("lastTripId");
@@ -35,81 +26,94 @@ const HeaderSection = () => {
     handleClose();
   };
 
-  const onClickHandle = () => {
-    console.log("my-trip click");
-  
-    // Check if both the user and lastTripId are valid
-    if (user && lastTripId) {
-      console.log("Navigate successfully with Last Trip ID:", lastTripId);
-      navigate(`/view-trip/${lastTripId}`);
-    } else {
-      console.error("User or Last Trip ID not found. Redirecting to dashboard or home.");
-      // Optional: Redirect to home or show a message
-      navigate("/");  // Or any other fallback page
-    }
-  
-    console.log("my-trip click finally");
-  };
-  
   return (
-    <div className="px-4 py-2 flex w-full justify-between items-center shadow-md bg-white">
-      {/* Logo */}
-      <img src={logo} alt="Logo" className="h-10" />
+    <header className="fixed top-0 left-0 w-full z-[100] px-6 py-4">
+      <nav className="max-w-7xl mx-auto glass rounded-full px-8 py-4 flex justify-between items-center border border-white/20 shadow-premium backdrop-blur-xl">
+        {/* Logo */}
+        <Link to="/" className="flex items-center gap-2">
+          <div className="w-10 h-10 bg-accent rounded-xl flex items-center justify-center text-white shadow-premium">
+            <HiOutlineSparkles size={24} />
+          </div>
+          <span className="font-heading font-bold text-2xl tracking-tighter text-accent">Antigravity AI</span>
+        </Link>
 
-      {/* User Section */}
-      {user ? (
-        <div className="flex items-center gap-4">
-          <button
-            className="text-gray-700 font-medium hover:text-blue-500 rounded-full"
-            onClick={onClickHandle}
-          >
-            My Trip
-          </button>
-          <img
-            src={profile}
-            alt="Profile"
-            className="w-10 h-10 rounded-full border-2 border-gray-300 cursor-pointer"
-            onClick={handleProfileClick}
-          />
-          {/* Popover */}
-          <Popover
-            open={Boolean(anchorEl)}
-            anchorEl={anchorEl}
-            onClose={handleClose}
-            anchorOrigin={{
-              vertical: "bottom",
-              horizontal: "center",
-            }}
-            transformOrigin={{
-              vertical: "top",
-              horizontal: "center",
-            }}
-          >
-            <div className="p-2">
-              <MenuItem onClick={handleViewProfile}>
-                <ListItemIcon>
-                  <AccountCircle fontSize="small" />
-                </ListItemIcon>
-                <Typography variant="inherit">View Profile</Typography>
-              </MenuItem>
-              <MenuItem onClick={handleLogout}>
-                <ListItemIcon>
-                  <Logout fontSize="small" />
-                </ListItemIcon>
-                <Typography variant="inherit">Logout</Typography>
-              </MenuItem>
-            </div>
-          </Popover>
-        </div>
-      ) : (
-        <a href="/login">
-          <Button variant="contained" className="bg-blue-500 hover:bg-blue-600">
-            Login
-          </Button>
-        </a>
-      )}
-    </div>
+        {/* User Section */}
+        {user ? (
+          <div className="flex items-center gap-8">
+            <Link 
+              to="/create-trip" 
+              className="text-sm font-heading font-semibold text-accent/60 hover:text-ai-glow transition-colors"
+            >
+              Curate New
+            </Link>
+            
+            {lastTripId && (
+               <Link 
+                to={`/view-trip/${lastTripId}`} 
+                className="text-sm font-heading font-semibold text-accent/60 hover:text-ai-glow transition-colors"
+              >
+                Recent Trip
+              </Link>
+            )}
+
+            <button
+               onClick={handleProfileClick}
+               className="flex items-center gap-3 pl-6 border-l border-accent/10 group text-left"
+            >
+              <div className="flex flex-col">
+                <span className="text-[10px] font-bold text-accent/30 uppercase tracking-widest">Explorer</span>
+                <span className="text-sm font-heading font-bold text-accent group-hover:text-ai-glow transition-colors">
+                  {user.email.split('@')[0]}
+                </span>
+              </div>
+              <div className="w-10 h-10 rounded-full bg-accent/5 flex items-center justify-center text-accent/40 group-hover:bg-ai-glow group-hover:text-white transition-all">
+                <HiOutlineUserCircle size={24} />
+              </div>
+            </button>
+
+            <Popover
+              open={Boolean(anchorEl)}
+              anchorEl={anchorEl}
+              onClose={handleClose}
+              anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+              transformOrigin={{ vertical: "top", horizontal: "right" }}
+              PaperProps={{
+                className: "mt-4 glass rounded-3xl border border-white/20 shadow-premium overflow-hidden min-w-[200px]"
+              }}
+            >
+              <div className="p-2">
+                <MenuItem onClick={() => { navigate("/profile"); handleClose(); }} className="rounded-2xl py-3 gap-3">
+                  <ListItemIcon className="min-w-0 text-accent/40">
+                    <History fontSize="small" />
+                  </ListItemIcon>
+                  <span className="font-heading font-semibold text-accent/70 text-sm">Trip History</span>
+                </MenuItem>
+                <MenuItem onClick={handleLogout} className="rounded-2xl py-3 gap-3 text-red-500">
+                  <ListItemIcon className="min-w-0 text-red-400">
+                    <Logout fontSize="small" />
+                  </ListItemIcon>
+                  <span className="font-heading font-semibold text-sm">Sign Out</span>
+                </MenuItem>
+              </div>
+            </Popover>
+          </div>
+        ) : (
+          <div className="flex items-center gap-8">
+             <Link to="/login" className="text-sm font-heading font-semibold text-accent/60 hover:text-accent transition-colors">
+               Sign In
+             </Link>
+             <Link 
+              to="/login" 
+              className="bg-accent text-white px-8 py-3 rounded-full text-sm font-heading font-bold shadow-premium hover:scale-105 transition-all"
+             >
+               Get Started
+             </Link>
+          </div>
+        )}
+      </nav>
+    </header>
   );
 };
 
 export default HeaderSection;
+

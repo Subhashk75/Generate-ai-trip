@@ -1,269 +1,148 @@
 import React, { useState, useEffect } from "react";
-import { AI_PROMPT, destinations } from "../Constant/Location";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "../../Service/firebaseConfig";
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import { chatSession } from "../../Service/AIModel";
 import { useNavigate } from "react-router-dom";
+import AIInput from "../Common/AIInput";
+import AISkeleton from "../Common/AISkeleton";
+import GlassCard from "../Common/GlassCard";
+
+const SYSTEM_INSTRUCTION = `
+You are a luxury AI Travel Concierge. Generate a highly detailed, personalized travel itinerary in JSON format.
+The output MUST follow this exact structure:
+{
+  "trip_title": "string",
+  "destination": "string",
+  "duration": "string",
+  "budget": "string",
+  "traveler_style": "string",
+  "summary": "A short, editorial opening for the trip.",
+  "itinerary": [
+    {
+      "day": 1,
+      "theme": "The Arrival & Grandeur",
+      "activities": [
+        {
+          "time": "Morning",
+          "title": "activity title",
+          "description": "luxurious description",
+          "location": "location name",
+          "image_placeholder": "https://images.unsplash.com/photo-X?auto=format&fit=crop&w=800&q=80"
+        }
+      ],
+      "dining": {
+        "lunch": "name and description",
+        "dinner": "name and description"
+      },
+      "accommodation": {
+        "name": "Hotel Name",
+        "style": "Description of the luxury stay"
+      }
+    }
+  ],
+  "cost_breakdown": {
+    "total_estimated": "$X",
+    "categories": {
+      "accommodation": "$X",
+      "activities": "$X",
+      "dining": "$X"
+    }
+  }
+}
+Return ONLY the JSON object. No markdown, no pre-text.
+`;
 
 const GenerateAITrip = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    destination: "",
-    travelDates: "",
-    budget: "",
-    interests: "",
-    additionalInfo: "",
-  });
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  // const isLoggedIn = localStorage.getItem("formData");
-  const lastTripId = localStorage.getItem("lastTripId");
-  const isLoggedIn = JSON.parse(localStorage.getItem("formData"));
-      // if (isLoggedIn) {
-      //   console.log("User Email:", isLoggedIn?.email);
-      // } else {
-      //   console.log("No user is logged in.");
-      // }
-
+  const user = JSON.parse(localStorage.getItem("formData"));
 
   useEffect(() => {
-    
-    if (isLoggedIn) {
-      // If a trip exists, redirect to view-trip
-      if (lastTripId) {
-        navigate(`/create-trip`);
-      }
-    } else {
+    if (!user) {
       navigate("/login");
     }
-  }, [navigate]);
-  
+  }, [user, navigate]);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const onGenerateTrip = async (userPrompt) => {
     setLoading(true);
-     
-    if(formData?.email != isLoggedIn?.email){
-       alert("plase Enter Login Email ");
-       setLoading(false);
-       return ;
-    }
-  
-
     try {
-      const FINAL_PROMPT = AI_PROMPT.replace("{location}", formData.destination)
-        .replace("{totalDays}", formData.travelDates)
-        .replace("{budget}", formData.budget)
-        .replace("{traveller}", formData.interests);
+      const FINAL_PROMPT = `${SYSTEM_INSTRUCTION}\n\nUser Request: ${userPrompt}`;
+      
+      const result = await chatSession.sendMessage(FINAL_PROMPT);
+      const responseText = result.response.text().replace(/```json|```/g, "").trim();
+      const tripData = JSON.parse(responseText);
 
-      const genAI = new GoogleGenerativeAI("AIzaSyAR5opnjTKVpE-wHbuNgBxPWG-DPBVsbe4");
-      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-      const result = await model.generateContent(FINAL_PROMPT);
+      const docId = Date.now().toString();
+      
+      // Save to Firestore
+      await setDoc(doc(db, "AITrips", docId), {
+        id: docId,
+        userEmail: user.email,
+        userName: user.email.split('@')[0],
+        prompt: userPrompt,
+        tripData: tripData,
+        createdAt: new Date().toISOString()
+      });
 
-      const tripData = result?.response?.text();
-      if (!tripData) throw new Error("Failed to generate trip plan.");
-
-      await saveAiTrip(tripData);
+      localStorage.setItem("lastTripId", docId);
+      navigate(`/view-trip/${docId}`);
     } catch (error) {
-      console.error("Error generating or saving trip:", error);
-      alert("There was an error generating your trip. Please try again.");
+      console.error("AI Generation Error:", error);
+      alert("Our concierge is momentarily unavailable. Please try a different request.");
     } finally {
       setLoading(false);
     }
   };
 
-  const saveAiTrip = async (tripData) => {
-    try {
-      const docId = Date.now().toString();
-      const sanitizedTripData = tripData.replace(/```json|```/g, "").trim();
-      const tripDataJson = JSON.parse(sanitizedTripData);
-  
-      // Save the trip data to Firestore
-      await setDoc(doc(db, "AITrips", docId), {
-        userSelection: formData,
-        tripData: tripDataJson,
-        userEmail: formData.email,
-        id: docId,
-      });
-  
-      // Store the trip ID locally
-      localStorage.setItem("lastTripId", docId);
-      // localStorage.setItem("trip_data", JSON.stringify(formData));
-      // Redirect to the view-trip page
-      navigate(`/view-trip/${docId}`);
-    } catch (error) {
-      console.error("Error saving trip data:", error);
-      alert("Failed to save trip data. Please try again.");
-    }
-  };
-  
-
   return (
-    <div className="p-6 bg-gray-100 min-h-screen flex items-center justify-center">
-      <div className="bg-white shadow-md rounded-lg max-w-2xl w-full p-8">
-        <h2 className="font-bold text-3xl text-blue-500 text-center mb-4">
-          Welcome to Generate-AI-Trip
-        </h2>
-        <p className="text-lg text-gray-600 text-center mb-8">
-          Plan the perfect trip tailored to your preferences with AI. Fill out
-          the form below, and let AI handle the rest!
-        </p>
-        <form onSubmit={handleSubmit} className="space-y-6">
-          {/** Input Fields */}
-          {[
-            { label: "Name", id: "name", type: "text", placeholder: "Enter your name" },
-            { label: "Email", id: "email", type: "email", placeholder: "Enter your email" },
-            { label: "Phone", id: "phone", type: "tel", placeholder: "Enter your phone number" },
-          ].map(({ label, id, type, placeholder }) => (
-            <div key={id}>
-              <label htmlFor={id} className="block text-gray-700 font-medium">
-                {label}:
-              </label>
-              <input
-                type={type}
-                id={id}
-                name={id}
-                value={formData[id]}
-                onChange={handleChange}
-                required
-                placeholder={placeholder}
-                className="mt-1 w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-400 focus:border-blue-400"
-              />
-            </div>
-          ))}
+    <div className="min-h-screen bg-base pt-32 pb-20 px-6 overflow-hidden relative">
+      {/* Background Decor */}
+      <div className="absolute top-[-20%] left-[-10%] w-[60%] h-[60%] bg-ai-glow/5 rounded-full blur-[140px]" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-purple-500/5 rounded-full blur-[140px]" />
 
-          {/** Destination */}
-          <div>
-            <label
-              htmlFor="destination"
-              className="block text-gray-700 font-medium"
-            >
-              Destination:
-            </label>
-            <select
-              id="destination"
-              name="destination"
-              value={formData.destination}
-              onChange={handleChange}
-              className="w-full p-2 rounded-lg border-gray-300"
-              required
-            >
-              <option value="" disabled>
-                Select a destination
-              </option>
-              {destinations.map((destination, index) => (
-                <option key={index} value={destination.name}>
-                  {destination.name}
-                </option>
+      <div className="max-w-7xl mx-auto relative z-10">
+        {!loading ? (
+          <div className="flex flex-col items-center text-center mb-20 animate-in fade-in slide-in-from-bottom-10 duration-1000">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-ai-glow/10 text-ai-glow text-sm font-semibold mb-8">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-ai-glow opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-ai-glow"></span>
+              </span>
+              Next-Gen Travel Intelligence
+            </div>
+            
+            <h1 className="text-6xl md:text-8xl font-bold text-accent mb-8 leading-tight">
+              Design your <br /> masterpiece.
+            </h1>
+            <p className="text-xl text-accent/50 max-w-2xl font-body mb-12">
+              Tell us your vision — from a quiet weekend in the Cotswolds to a multi-city Tokyo expedition. Our AI handles the logistics while you dream.
+            </p>
+
+            <AIInput onGenerate={onGenerateTrip} loading={loading} />
+
+            <div className="mt-32 grid grid-cols-1 md:grid-cols-3 gap-12 text-left">
+              {[
+                { title: "Editorial Detail", desc: "Every activity curated like a lifestyle magazine feature." },
+                { title: "Smart Constraints", desc: "Instantly factors in your budget, style, and companions." },
+                { title: "Visual Timeline", desc: "A beautiful interactive map and timeline for your journey." }
+              ].map((feature, i) => (
+                <div key={i} className="space-y-4">
+                  <div className="h-px w-12 bg-ai-glow" />
+                  <h3 className="text-xl font-bold text-accent">{feature.title}</h3>
+                  <p className="text-accent/40 font-body leading-relaxed">{feature.desc}</p>
+                </div>
               ))}
-            </select>
-          </div>
-
-          {/** Travel Days */}
-          <div>
-            <label
-              htmlFor="travelDates"
-              className="block text-gray-700 font-medium"
-            >
-              Travel Days:
-            </label>
-            <input
-              type="number"
-              id="travelDates"
-              name="travelDates"
-              value={formData.travelDates}
-              onChange={handleChange}
-              required
-              className="mt-1 w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-400 focus:border-blue-400"
-            />
-          </div>
-
-          {/** Budget and Interests */}
-          {[
-            {
-              id: "budget",
-              label: "Budget (in USD):",
-              options: [
-                { value: "cheap", label: "Cheap ($20-$40 USD)" },
-                { value: "moderate", label: "Moderate ($40-$90 USD)" },
-                { value: "high", label: "High ($90-$190 USD)" },
-              ],
-            },
-            {
-              id: "interests",
-              label: "Who are you traveling with?",
-              options: [
-                { value: "Just Me", label: "Just Me" },
-                { value: "A Couple", label: "A Couple" },
-                { value: "Family", label: "Family" },
-                { value: "Friend", label: "Friend" },
-              ],
-            },
-          ].map(({ id, label, options }) => (
-            <div key={id}>
-              <label
-                htmlFor={id}
-                className="block text-gray-700 font-medium"
-              >
-                {label}
-              </label>
-              <select
-                id={id}
-                name={id}
-                value={formData[id]}
-                onChange={handleChange}
-                required
-                className="w-full p-2 rounded-lg border-gray-300"
-              >
-                <option value="" disabled>
-                  Select an option
-                </option>
-                {options.map(({ value, label }) => (
-                  <option key={value} value={value}>
-                    {label}
-                  </option>
-                ))}
-              </select>
             </div>
-          ))}
-
-          {/** Additional Information */}
-          <div>
-            <label
-              htmlFor="additionalInfo"
-              className="block text-gray-700 font-medium"
-            >
-              Additional Information:
-            </label>
-            <textarea
-              id="additionalInfo"
-              name="additionalInfo"
-              value={formData.additionalInfo}
-              onChange={handleChange}
-              placeholder="Any other details we should know?"
-              className="mt-1 w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-400 focus:border-blue-400"
-            ></textarea>
           </div>
-
-          {/** Submit Button */}
-          <button
-            type="submit"
-            className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg shadow-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
-            disabled={loading}
-          >
-            {loading ? "Generating..." : "Submit"}
-          </button>
-        </form>
+        ) : (
+          <div className="flex flex-col items-center">
+             <div className="text-center mb-12">
+                <h2 className="text-3xl font-bold text-accent mb-2">Curating your experience...</h2>
+                <p className="text-accent/40 font-body">Our AI is sourcing the finest locations and dining.</p>
+             </div>
+             <AISkeleton />
+          </div>
+        )}
       </div>
     </div>
   );

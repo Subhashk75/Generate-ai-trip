@@ -1,58 +1,59 @@
 import React from 'react';
+import { HiOutlineSparkles } from "react-icons/hi2";
 
 const FooterSection = () => {
   return (
-    <footer className="bg-gray-900 text-white py-8">
-      <div className="container mx-auto px-6 lg:px-20">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* About Section */}
-          <div>
-            <h3 className="text-lg font-bold mb-4">About Generate AI Trip</h3>
-            <p className="text-gray-400">
-              Generate AI Trip is a platform that uses artificial intelligence to simplify your travel planning process, providing personalized itineraries tailored to your preferences.
-            </p>
+    <footer className="bg-base border-t border-accent/5 py-20 px-6 mt-40">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-20">
+        <div className="max-w-sm space-y-6">
+          <div className="flex items-center gap-3">
+             <div className="w-8 h-8 bg-accent rounded-lg flex items-center justify-center text-white">
+                <HiOutlineSparkles size={18} />
+             </div>
+             <span className="font-heading font-bold text-xl tracking-tighter text-accent">Antigravity AI</span>
           </div>
+          <p className="text-accent/40 font-body leading-relaxed text-sm">
+            Curating the world's most intelligent and elegant travel experiences. Design-led, AI-first, human-centered.
+          </p>
+        </div>
 
-          {/* Quick Links */}
-          <div>
-            <h3 className="text-lg font-bold mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              <li>
-                <a href="/" className="text-gray-400 hover:text-white">Home</a>
-              </li>
-              <li>
-                <a href="#" className="text-gray-400 hover:text-white">About Us</a>
-              </li>
-              <li>
-                <a href="/features" className="text-gray-400 hover:text-white">Features</a>
-              </li>
-              <li>
-                <a href="/contact" className="text-gray-400 hover:text-white">Contact</a>
-              </li>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-20">
+          <div className="space-y-6">
+            <h4 className="text-xs font-heading font-bold text-accent uppercase tracking-widest">Platform</h4>
+            <ul className="space-y-4 text-sm font-body text-accent/50">
+              <li className="hover:text-ai-glow cursor-pointer transition-colors">Experience</li>
+              <li className="hover:text-ai-glow cursor-pointer transition-colors">Intelligence</li>
+              <li className="hover:text-ai-glow cursor-pointer transition-colors">Curated Stays</li>
             </ul>
           </div>
-
-          {/* Contact Section */}
-          <div>
-            <h3 className="text-lg font-bold mb-4">Contact Us</h3>
-            <p className="text-gray-400">
-              Email: <a href="mailto:support@generateaitrip.com" className="hover:text-white">support@generateaitrip.com</a>
-            </p>
-            <p className="text-gray-400">
-              Phone: <a href="tel:+1234567890" className="hover:text-white">+1 234 567 890</a>
-            </p>
-            <p className="text-gray-400">
-              Address: 123 AI Travel Lane, Innovation City
-            </p>
+          <div className="space-y-6">
+            <h4 className="text-xs font-heading font-bold text-accent uppercase tracking-widest">Connect</h4>
+            <ul className="space-y-4 text-sm font-body text-accent/50">
+              <li className="hover:text-ai-glow cursor-pointer transition-colors">Instagram</li>
+              <li className="hover:text-ai-glow cursor-pointer transition-colors">Journal</li>
+              <li className="hover:text-ai-glow cursor-pointer transition-colors">Support</li>
+            </ul>
+          </div>
+          <div className="space-y-6 md:col-span-1">
+             <h4 className="text-xs font-heading font-bold text-accent uppercase tracking-widest">Join the Circle</h4>
+             <div className="flex gap-2">
+                <input 
+                  type="email" 
+                  placeholder="Email" 
+                  className="bg-accent/5 border-none rounded-xl px-4 py-2 text-sm focus:ring-1 focus:ring-ai-glow outline-none w-full"
+                />
+             </div>
           </div>
         </div>
-
-        <div className="text-center mt-8 border-t border-gray-700 pt-4">
-          <p className="text-gray-500">&copy; {new Date().getFullYear()} Generate AI Trip. All Rights Reserved.</p>
-        </div>
+      </div>
+      
+      <div className="max-w-7xl mx-auto mt-20 pt-8 border-t border-accent/5 flex justify-between items-center text-[10px] uppercase font-heading font-bold text-accent/20 tracking-[0.3em]">
+         <span>&copy; {new Date().getFullYear()} Antigravity Studio</span>
+         <span>Privacy & Terms</span>
       </div>
     </footer>
   );
 };
 
 export default FooterSection;
+
